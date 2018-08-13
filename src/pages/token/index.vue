@@ -9,22 +9,17 @@
     data() {
       return {
         data: DATA,
-        symbol: '',
-        order_info: null
+        symbol: ''
       }
     },
     mounted() {
       this.symbol = this.$route.query.symbol
-      if (this.symbol)
-        dataReady().then(() => {
-          this.order_info = this.data.orders[this.symbol]
-        })
     }
   }
 </script>
 
 <template>
   <div>
-    <token :mini="false" :symbol="symbol" :order_info="order_info" v-if="order_info"></token>
+    <token :mini="false" :symbol="symbol" :order_info="data.orders[symbol]" v-if="data.ready"></token>
   </div>
 </template>
